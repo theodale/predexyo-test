@@ -29,7 +29,7 @@ contract Vault {
         WETH = _WETH;
     }
 
-    // Allows receiving ETH from WETH
+    // Allows receiving ETH from WETH contract during unwrapping
     receive() external payable {}
 
     // *** ETH DEPOSITS ***
@@ -44,7 +44,7 @@ contract Vault {
         // Underflow reverts if sender has insufficient deposited ETH
         ETHBalance[msg.sender] -= _amount;
 
-        // Send the ETH to the user using call to offer all available gas to recipeint
+        // Send the ETH to the user using call to offer all available gas
         (bool success, ) = msg.sender.call{value: _amount}("");
 
         if (!success) {
@@ -72,8 +72,8 @@ contract Vault {
         // Swap WETH to ETH via its withdraw function
         IWETH(WETH).withdraw(_amount);
 
-        // // Increase the ETH balance of the sender
-        // ETHBalance[msg.sender] += _amount;
+        // Increase the ETH balance of the sender
+        ETHBalance[msg.sender] += _amount;
     }
 
     // *** ERC20 DEPOSITS ***
