@@ -5,9 +5,6 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {IWETH} from "./IWETH.sol";
 
-// You cannot use the ERC20 functionality with the WETH address
-// (bool success, ) = msg.sender.call{value: msg.value}(""); => does this not work for ?
-
 contract Vault {
     // *** STATE VARIABLES ***
 
